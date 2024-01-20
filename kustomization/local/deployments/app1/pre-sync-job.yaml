@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: local-alpine-sleep-test
+  labels:
+    app: local-alpine-sleep-test
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  template:
+    metadata:
+      labels:
+        app: local-alpine-sleep-test
+    spec:
+      containers:
+        - name: local-alpine-sleep-test
+          image: alpine
+          imagePullPolicy: IfNotPresent
+          command:
+            - sleep
+            - "120"
+      restartPolicy: Never
