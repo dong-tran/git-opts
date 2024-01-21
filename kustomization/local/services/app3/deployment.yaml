@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: local-app3
-        # image: traefik/whoami
-        image: containous/whoami
+        image: traefik/whoami
+        # image: containous/whoami
         imagePullPolicy: IfNotPresent
         resources:
             requests:
