@@ -2,7 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ../services/app1
-  - ../services/app2
-  - ../services/app3
-
+  - ../../../kustomization/local/services/app4
+  - ../../../kustomization/local/services/app5

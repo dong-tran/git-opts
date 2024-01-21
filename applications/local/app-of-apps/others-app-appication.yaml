@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local-others-app
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  # finalizers:
+  #   - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: local
+    #name: in-cluster
+  project: default
+  source:
+    path: applications/local/others-app
+    repoURL: https://github.com/dong-tran/git-opts.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - PruneLast=true
+      - CreateNamespace=true
+  revisionHistoryLimit: 1
